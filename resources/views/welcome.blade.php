@@ -15,7 +15,7 @@
             </a> 
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img class="w-64" src="https://booksmandala.com/_next/image?url=https%3A%2F%2Fbooks.bizmandala.com%2Fmedia%2Fbooks%2F9789937753531%2F9789937753531-1028.webp&w=1920&q=75" alt="bookshelf">
+            <img class="w-64" src="" alt="bookshelf">
         </div>                
     </div>
 </section>
