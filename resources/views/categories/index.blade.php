@@ -13,14 +13,19 @@
         <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
             <thead>
                 <tr class="border-b bg-gray-100 text-left">
+                    <th class="px-6 py-3">SN</th>
                     <th class="px-6 py-3">Name</th>
                     <th class="px-6 py-3">Description</th>
                     <th class="px-6 py-3">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $i=1
+                @endphp
                 @forelse($categories as $category)
                     <tr class="border-b">
+                        <td class="px-6 py-4">{{ $i++ }}</td>
                         <td class="px-6 py-4">{{ $category->name }}</td>
                         <td class="px-6 py-4">{{ $category->description }}</td>
                         <td class="px-6 py-4 flex space-x-2">

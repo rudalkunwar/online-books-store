@@ -16,7 +16,7 @@
                 <!-- Name Field -->
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Name</label>
-                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border @error('name') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ old('name', $category->name) }}" required>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border @error('name') border-red-500 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ old('name', $category->name) }}" required>
                     @error('name')
                         <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
@@ -25,7 +25,7 @@
                 <!-- Description Field -->
                 <div class="mb-4">
                     <label for="description" class="block text-gray-700 text-sm font-medium mb-2">Description</label>
-                    <textarea id="description" name="description" rows="4" class="w-full px-4 py-2 border @error('description') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">{{ old('description', $category->description) }}</textarea>
+                    <textarea id="description" name="description" rows="4" class="w-full px-4 py-2 border @error('description') border-red-500 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">{{ old('description', $category->description) }}</textarea>
                     @error('description')
                         <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
