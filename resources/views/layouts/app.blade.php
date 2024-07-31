@@ -176,7 +176,7 @@
         </div>
         <div class="flex-grow flex flex-col">
             <div class="flex-grow p-6">
-                <div class="flex-1 ml-56 overflow-hidden">
+                <div class="flex-1 ml-56 overflow-hidden pl-2">
                 @yield('content')
                 </div>
             </div>

@@ -17,33 +17,37 @@ Route::get('/dashboard', function () {
 
 
 //for books 
-Route::get('/books', [BookController::class, 'index'])->name('book.index');
-Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
-Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
-Route::get('/book/{id}/update', [BookController::class, 'update'])->name('book.update');
-Route::get('/book/{id}/delete', [BookController::class, 'destroy'])->name('book.delete');
+Route::get('/books', [BookController::class, 'index'])->name('books.index');
+Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+Route::post('/books/store', [BookController::class, 'store'])->name('books.store');
+Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('books.edit');
+Route::post('/books/{id}/update', [BookController::class, 'update'])->name('books.update');
+Route::delete('/books/{id}/delete', [BookController::class, 'destroy'])->name('books.delete');
 
 
-//for books 
-Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-Route::get('/category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
-Route::get('/category/{id}/delete', [CategoryController::class, 'destroy'])->name('category.delete');
+//for categories 
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.delete');
 
-//for books 
-Route::get('/authors', [AuthorController::class, 'index'])->name('author.index');
-Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
-Route::get('/author/{id}/edit', [AuthorController::class, 'edit'])->name('author.edit');
-Route::get('/author/{id}/update', [AuthorController::class, 'update'])->name('author.update');
-Route::get('/author/{id}/delete', [AuthorController::class, 'destroy'])->name('author.delete');
+//for authors 
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
+Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
+Route::post('/authors/store', [AuthorController::class, 'store'])->name('authors.store');
+Route::get('/authors/{id}/edit', [AuthorController::class, 'edit'])->name('authors.edit');
+Route::post('/authors/{id}/update', [AuthorController::class, 'update'])->name('authors.update');
+Route::delete('/authors/{id}/delete', [AuthorController::class, 'destroy'])->name('authors.delete');
 
-//for books 
-Route::get('/publications', [PublicationController::class, 'index'])->name('publication.index');
-Route::get('/publication/create', [PublicationController::class, 'create'])->name('publication.create');
-Route::get('/publication/{id}/edit', [PublicationController::class, 'edit'])->name('publication.edit');
-Route::get('/publication/{id}/update', [PublicationController::class, 'update'])->name('publication.update');
-Route::get('/publication/{id}/delete', [PublicationController::class, 'destroy'])->name('publication.delete');
+//for PublicationController 
+Route::get('/publications', [PublicationController::class, 'index'])->name('publications.index');
+Route::get('/publications/create', [PublicationController::class, 'create'])->name('publications.create');
+Route::post('/publications/store', [PublicationController::class, 'store'])->name('publications.store');
+Route::get('/publications/{id}/edit', [PublicationController::class, 'edit'])->name('publications.edit');
+Route::post('/publications/{id}/update', [PublicationController::class, 'update'])->name('publications.update');
+Route::delete('/publications/{id}/delete', [PublicationController::class, 'destroy'])->name('publications.delete');
 
 
 

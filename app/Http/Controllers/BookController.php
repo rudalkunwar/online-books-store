@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Category;
+use App\Models\Publication;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -11,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('book.index');
+        return view('books.index');
     }
 
     /**
@@ -19,7 +22,17 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        // Fetch data for form fields
+        $authors = Author::all();          // Fetch all authors
+        $publications = Publication::all(); // Fetch all publications
+        $categories = Category::all();     // Fetch all categories
+
+        // Return the view with the data
+        return view('books.create', [
+            'authors' => $authors,
+            'publications' => $publications,
+            'categories' => $categories,
+        ]);
     }
 
     /**

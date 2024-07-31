@@ -11,7 +11,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        return view('publication.index');
+        return view('publications.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class PublicationController extends Controller
      */
     public function create()
     {
-        //
+        return view('publications.create');
     }
 
     /**
