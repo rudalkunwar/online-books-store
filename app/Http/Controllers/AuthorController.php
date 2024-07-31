@@ -13,7 +13,11 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return view('authors.index');
+        // Retrieve all authors
+        $authors = Author::all();
+
+        // Pass the authors to the view
+        return view('authors.index', compact('authors'));
     }
 
     /**
@@ -45,7 +49,7 @@ class AuthorController extends Controller
 
         // Handle photo upload if present
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('public/photos');
+            $photoPath = $request->file('photo')->store('public/authors');
             $validatedData['photo'] = $photoPath;
         }
 
@@ -97,7 +101,7 @@ class AuthorController extends Controller
             if ($author->photo) {
                 Storage::delete($author->photo);
             }
-            $photoPath = $request->file('photo')->store('public/photos');
+            $photoPath = $request->file('photo')->store('public/authors');
             $validatedData['photo'] = $photoPath;
         }
 

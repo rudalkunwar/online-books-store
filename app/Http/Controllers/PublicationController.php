@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publication;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PublicationController extends Controller
 {
@@ -11,8 +14,11 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        return view('publications.index');
+        $publications = Publication::all(); // Retrieve all publications
+
+        return view('publications.index', compact('publications'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +33,30 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:publications',
+                'regex:/^[a-zA-Z\s]+$/',
+            ],
+            'address' => 'nullable|string',
+            'contact' => 'nullable|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Handle file upload if exists
+        if ($request->hasFile('photo')) {
+            $validatedData['photo'] = $request->file('photo')->store('public/publications');
+        }
+
+        // Create and save the new publication using mass assignment
+        Publication::create($validatedData);
+
+        // Redirect with a success message
+        return redirect()->route('publications.index')->with('success', 'Publication added successfully');
     }
 
     /**
@@ -35,7 +64,8 @@ class PublicationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $publication = Publication::findOrFail($id); // Retrieve the publication by ID
+        return view('publications.show', compact('publication'));
     }
 
     /**
@@ -43,7 +73,8 @@ class PublicationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $publication = Publication::findOrFail($id); // Retrieve the publication by ID
+        return view('publications.edit', compact('publication'));
     }
 
     /**
@@ -51,14 +82,58 @@ class PublicationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $publication = Publication::findOrFail($id); // Retrieve the publication by ID
+
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z\s]+$/',
+            ],
+            'address' => 'string',
+            'contact' => 'string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Check if a new photo is uploaded
+        if ($request->hasFile('photo')) {
+            // Delete the old photo if it exists
+            if ($publication->photo) {
+                Storage::delete($publication->photo);
+            }
+            // Store the new photo and update the photo path in validated data
+            $validatedData['photo'] = $request->file('photo')->store('publications');
+        }
+
+
+        // Update the publication record with the validated data
+        $publication->update($validatedData);
+
+        // Redirect with a success message
+        return redirect()->route('publications.index')->with('success', 'Publication updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $publication = Publication::findOrFail($id); // Retrieve the publication by ID
+
+        // Check if the publication has a photo and delete it from storage
+        if ($publication->photo) {
+            // Delete the photo file from storage
+            Storage::delete($publication->photo);
+        }
+
+        // Delete the publication record
+        $publication->delete();
+
+        // Redirect with a success message
+        return redirect()->route('publications.index')->with('success', 'Publication deleted successfully');
     }
 }
