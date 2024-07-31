@@ -35,7 +35,7 @@
                             <td class="py-2 px-4 border-b">{{ $book->price }}</td>
                             <td class="py-2 px-4 border-b">
                                 @if ($book->photo)
-                                    <img src="{{ asset('storage/' . $book->photo) }}" alt="{{ $book->title }}" class="w-16 h-16 object-cover">
+                                    <img src="{{ Storage::url($book->photo) }}" alt="{{ $book->title }}" class="w-16 h-16 object-cover">
                                 @else
                                     No Photo
                                 @endif

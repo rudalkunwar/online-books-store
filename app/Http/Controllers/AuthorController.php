@@ -43,7 +43,7 @@ class AuthorController extends Controller
                 'regex:/^[a-zA-Z\s]+$/', // Ensure the name does not contain numbers
             ],
             'bio' => 'nullable|string',
-            'birth_date' => 'nullable|date',
+            'birth_date' => 'nullable|date|before:today',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -79,7 +79,6 @@ class AuthorController extends Controller
         return view('authors.edit', ['author' => $author]);
     }
 
-
     /**
      * Update the specified resource in storage.
      */
@@ -87,11 +86,17 @@ class AuthorController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z\s]+$/', // Ensure the name does not contain numbers
+            ],
             'bio' => 'nullable|string',
-            'birth_date' => 'nullable|date',
+            'birth_date' => 'nullable|date|before:today',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
 
         $author = Author::findOrFail($id); // Retrieve the author by ID
 

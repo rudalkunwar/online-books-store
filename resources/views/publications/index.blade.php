@@ -15,6 +15,7 @@
                     <th class="px-6 py-3">Name</th>
                     <th class="px-6 py-3">Address</th>
                     <th class="px-6 py-3">Contact</th>
+                    <th class="px-6 py-3">Photo</th>
                     <th class="px-6 py-3">Actions</th>
                 </tr>
             </thead>
@@ -24,6 +25,13 @@
                         <td class="px-6 py-4">{{ $publication->name }}</td>
                         <td class="px-6 py-4">{{ $publication->address }}</td>
                         <td class="px-6 py-4">{{ $publication->contact }}</td>
+                        <td class="py-2 px-4 border-b">
+                            @if ($publication->photo)
+                                <img src="{{ Storage::url($publication->photo) }}" alt="{{ $publication->title }}" class="w-16 h-16 object-cover">
+                            @else
+                                No Photo
+                            @endif
+                        </td>
                         <td class="px-6 py-4 flex space-x-2">
                             <a href="{{ route('publications.edit', $publication->id) }}" class="bg-blue-500 px-4 py-2 rounded-lg text-white shadow-lg hover:bg-blue-700 transition-colors duration-300">
                                 Edit

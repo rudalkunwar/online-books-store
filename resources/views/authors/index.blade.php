@@ -13,6 +13,7 @@
             <table class="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr class="bg-gray-100">
+                        <th class="py-3 px-4 border-b text-left text-gray-600">SN</th>
                         <th class="py-3 px-4 border-b text-left text-gray-600">Name</th>
                         <th class="py-3 px-4 border-b text-left text-gray-600">Bio</th>
                         <th class="py-3 px-4 border-b text-left text-gray-600">Birth Date</th>
@@ -21,24 +22,28 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $i=1
+                    @endphp
                     @forelse ($authors as $author)
                         <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 border-b text-gray-800">{{ $i++ }}</td>
                             <td class="py-3 px-4 border-b text-gray-800">{{ $author->name }}</td>
                             <td class="py-3 px-4 border-b text-gray-800">{{ $author->bio }}</td>
                             <td class="py-3 px-4 border-b text-gray-800">{{ $author->birth_date }}</td>
                             <td class="py-3 px-4 border-b">
                                 @if ($author->photo)
-                                    <img src="{{ asset('storage/' . $author->photo) }}" alt="{{ $author->name }}" class="w-16 h-16 rounded object-cover">
+                                    <img src="{{ Storage::url($author->photo) }}" alt="{{ $author->name }}" class="w-16 h-16 rounded object-cover">
                                 @else
                                     <span class="text-gray-500">No Photo</span>
                                 @endif
                             </td>
                             <td class="py-3 px-4 border-b">
-                                <a href="{{ route('authors.edit', $author->id) }}" class="text-blue-600 hover:text-blue-900 mr-2">Edit</a>
+                                <a href="{{ route('authors.edit', $author->id) }}" class="px-4 py-2 rounded-md text-white bg-blue-600  hover:bg-blue-900 mr-2">Edit</a>
                                 <form action="{{ route('authors.destroy', $author->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button type="submit" class="px-4 py-2 rounded-md text-white bg-red-600  hover:bg-red-900 mr-2" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
