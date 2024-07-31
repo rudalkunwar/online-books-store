@@ -18,7 +18,7 @@
                 <!-- Name Field -->
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Name</label>
-                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border @error('name') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ old('name') }}" required>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border @error('name') border-red-500 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ old('name') }}" required>
                     @error('name')
                         <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
@@ -27,7 +27,7 @@
                 <!-- Bio Field -->
                 <div class="mb-4">
                     <label for="bio" class="block text-gray-700 text-sm font-medium mb-2">Bio</label>
-                    <textarea id="bio" name="bio" rows="4" class="w-full px-4 py-2 border @error('bio') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">{{ old('bio') }}</textarea>
+                    <textarea id="bio" name="bio" rows="4" class="w-full px-4 py-2 border @error('bio') border-red-500 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">{{ old('bio') }}</textarea>
                     @error('bio')
                         <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
@@ -36,7 +36,7 @@
                 <!-- Birth Date Field -->
                 <div class="mb-4">
                     <label for="birth_date" class="block text-gray-700 text-sm font-medium mb-2">Birth Date</label>
-                    <input type="date" id="birth_date" name="birth_date" class="w-full px-4 py-2 border @error('birth_date') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ old('birth_date') }}" required>
+                    <input type="date" id="birth_date" name="birth_date" class="w-full px-4 py-2 border @error('birth_date') border-red-500 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ old('birth_date') }}" required>
                     @error('birth_date')
                         <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
@@ -45,7 +45,7 @@
                 <!-- Photo Field -->
                 <div class="mb-4">
                     <label for="photo" class="block text-gray-700 text-sm font-medium mb-2">Photo</label>
-                    <input type="file" id="photo" name="photo" class="w-full px-4 py-2 border @error('photo') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <input type="file" id="photo" name="photo" class="w-full px-4 py-2 border @error('photo') border-red-500 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                     @error('photo')
                         <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
                     @enderror

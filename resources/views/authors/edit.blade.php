@@ -40,7 +40,7 @@
             <label for="photo" class="block text-gray-700 font-bold mb-2">Photo</label>
             @if ($author->photo)
                 <div class="mb-2">
-                    <img src="{{ Storage::url($author->photo) }}"" alt="{{ $author->name }}" class="w-16 h-16 rounded object-cover">
+                    <img src="{{ Storage::url($author->photo) }}" alt="{{ $author->name }}" class="w-16 h-16 rounded object-cover">
                 </div>
             @endif
             <input type="file" name="photo" id="photo" class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
