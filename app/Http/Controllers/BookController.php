@@ -18,6 +18,8 @@ class BookController extends Controller
     {
         $books = Book::with('author', 'publication', 'categories')->get(); // Retrieve all books with relationships
 
+        // dd($books);
+
         return view('books.index', compact('books'));
     }
 
@@ -46,7 +48,7 @@ class BookController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:books|regex:/^[a-zA-Z\s]+$/',
             'description' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'author_id' => 'required|exists:authors,id',
@@ -56,6 +58,7 @@ class BookController extends Controller
             'categories' => 'nullable|array',
             'categories.*' => 'exists:categories,id',
         ]);
+
 
         // Handle the photo upload if present
         if ($request->hasFile('photo')) {
@@ -105,13 +108,10 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $book = Book::findOrFail($id); // Retrieve the book by ID
-
-        // Validate the request data
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
+        $validatedData =  $request->validate([
+            'title' => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/',
             'description' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'author_id' => 'required|exists:authors,id',
@@ -122,31 +122,21 @@ class BookController extends Controller
             'categories.*' => 'exists:categories,id',
         ]);
 
-        // Handle the photo upload if present
-        if ($request->hasFile('photo')) {
-            // Delete old photo if it exists
-            if ($book->photo) {
-                Storage::delete($book->photo);
-            }
+        $book = Book::findOrFail($id);
 
-            // Store the new photo and update the photo path in validated data
-            $validatedData['photo'] = $request->file('photo')->store('public/books');
+        // Handle photo upload
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('public/books');
+            $book->photo = $photoPath;
         }
 
-        // Update the book record with the validated data
         $book->update($validatedData);
 
-        // Sync categories to the book (update existing and attach new)
-        if ($request->has('categories')) {
-            $book->categories()->sync($request->input('categories'));
-        } else {
-            $book->categories()->detach(); // Remove all categories if none are provided
-        }
+        // Sync categories
+        $book->categories()->sync($request->input('categories', []));
 
-        // Redirect to the index page with a success message
-        return redirect()->route('books.index')->with('success', 'Book updated successfully');
+        return redirect()->route('books.index')->with('success', 'Book updated successfully.');
     }
-
     /**
      * Remove the specified resource from storage.
      */

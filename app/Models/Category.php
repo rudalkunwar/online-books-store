@@ -13,7 +13,7 @@ class Category extends Model
         'description'
     ];
 
-    public function books()
+    public function book()
     {
         return $this->belongsToMany(Book::class, 'book_category');
     }

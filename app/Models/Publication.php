@@ -14,7 +14,7 @@ class Publication extends Model
         'contact',
         'photo'
     ];
-    public function books()
+    public function book()
     {
         return $this->belongsTo(Book::class);
     }

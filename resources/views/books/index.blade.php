@@ -14,25 +14,27 @@
             <table class="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
+                        <th class="py-2 px-4 border-b">SN</th>
                         <th class="py-2 px-4 border-b">Title</th>
-                        <th class="py-2 px-4 border-b">Description</th>
                         <th class="py-2 px-4 border-b">Author</th>
                         <th class="py-2 px-4 border-b">Publication</th>
-                        <th class="py-2 px-4 border-b">Published Date</th>
                         <th class="py-2 px-4 border-b">Price</th>
                         <th class="py-2 px-4 border-b">Photo</th>
                         <th class="py-2 px-4 border-b">Actions</th>
+                        <th  class="py-2 px-4 border-b">More</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
+                    @php
+                        $i=1
+                    @endphp
                     @forelse ($books as $book)
                         <tr>
+                            <td class="py-2 px-4 border-b">{{ $i++ }}</td>
                             <td class="py-2 px-4 border-b">{{ $book->title }}</td>
-                            <td class="py-2 px-4 border-b">{{ $book->description }}</td>
                             <td class="py-2 px-4 border-b">{{ $book->author->name }}</td>
-                            <td class="py-2 px-4 border-b">{{ $book->publication->title }}</td>
-                            <td class="py-2 px-4 border-b">{{ $book->published_date }}</td>
-                            <td class="py-2 px-4 border-b">{{ $book->price }}</td>
+                            <td class="py-2 px-4 border-b">{{ $book->publication->name }}</td>
+                            <td class="py-2 px-4 border-b">Rs {{ $book->price }}</td>
                             <td class="py-2 px-4 border-b">
                                 @if ($book->photo)
                                     <img src="{{ Storage::url($book->photo) }}" alt="{{ $book->title }}" class="w-16 h-16 object-cover">
@@ -48,10 +50,11 @@
                                     <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-lg shadow hover:bg-red-700 transition-colors duration-300" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>
+                            <td  class="py-2 px-4 border-b text-green-400"><a href="{{route('books.show',$book->id)}}">More</a></td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="py-2 px-4 border-b text-center">No books found</td>
+                            <td colspan="9" class="py-2 px-4 border-b text-center">No books found</td>
                         </tr>
                     @endforelse
                 </tbody>
