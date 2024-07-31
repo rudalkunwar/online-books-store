@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publication;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +17,6 @@ class PublicationController extends Controller
 
         return view('publications.index', compact('publications'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -42,8 +40,8 @@ class PublicationController extends Controller
                 'unique:publications',
                 'regex:/^[a-zA-Z\s]+$/',
             ],
-            'address' => 'nullable|string',
-            'contact' => 'nullable|string',
+            'address' => 'required|string',
+            'contact' => 'required|digits:10',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -82,7 +80,6 @@ class PublicationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $publication = Publication::findOrFail($id); // Retrieve the publication by ID
 
         // Validate the request data
@@ -93,8 +90,8 @@ class PublicationController extends Controller
                 'max:255',
                 'regex:/^[a-zA-Z\s]+$/',
             ],
-            'address' => 'string',
-            'contact' => 'string',
+            'address' => 'required|string',
+            'contact' => 'required|digits:10',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -105,9 +102,8 @@ class PublicationController extends Controller
                 Storage::delete($publication->photo);
             }
             // Store the new photo and update the photo path in validated data
-            $validatedData['photo'] = $request->file('photo')->store('publications');
+            $validatedData['photo'] = $request->file('photo')->store('public/publications');
         }
-
 
         // Update the publication record with the validated data
         $publication->update($validatedData);
@@ -115,7 +111,6 @@ class PublicationController extends Controller
         // Redirect with a success message
         return redirect()->route('publications.index')->with('success', 'Publication updated successfully');
     }
-
 
     /**
      * Remove the specified resource from storage.

@@ -12,6 +12,7 @@
         <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
             <thead>
                 <tr class="border-b bg-gray-100 text-left">
+                    <th class="px-6 py-3">SN</th>
                     <th class="px-6 py-3">Name</th>
                     <th class="px-6 py-3">Address</th>
                     <th class="px-6 py-3">Contact</th>
@@ -20,8 +21,12 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $i=1
+                @endphp
                 @forelse($publications as $publication)
                     <tr class="border-b">
+                        <td class="px-6 py-4">{{ $i++ }}</td>
                         <td class="px-6 py-4">{{ $publication->name }}</td>
                         <td class="px-6 py-4">{{ $publication->address }}</td>
                         <td class="px-6 py-4">{{ $publication->contact }}</td>
