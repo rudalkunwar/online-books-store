@@ -1,4 +1,4 @@
-@extends('main')
+@extends('layout.guest')
 @section('content')
 <section class="bg-white">
     <div class="grid py-8 px-4 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
