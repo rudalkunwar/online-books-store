@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Book extends Model
 {
@@ -27,8 +28,12 @@ class Book extends Model
     {
         return $this->belongsTo(Publication::class);
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'book_category')->withTimestamps();
+        return $this->belongsToMany(Genre::class, 'book_genres')->withTimestamps();
     }
 }
