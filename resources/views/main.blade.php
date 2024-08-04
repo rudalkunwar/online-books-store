@@ -278,6 +278,7 @@
             </div>
         </div>
     </section>
+    
     <section id="about" class="py-36 bg-gray-100">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
@@ -379,10 +380,8 @@
             <div class="col-span-1">
                 <h3 class="text-sm font-semibold text-gray-600 uppercase">Popular Category</h3>
                 <div class="mt-4 space-y-2 w-5/12">
-                    @for ($i = 0; $i < 3; $i++)
-                        <a href="category/{{ $categories[$i]->id }}"
-                            class="text-base text-gray-600 hover:text-gray-800 block">{{ $categories[$i]->name }}</a>
-                    @endfor
+
+                    <a href="category/" class="text-base text-gray-600 hover:text-gray-800 block"></a>
                 </div>
             </div>
         </div>

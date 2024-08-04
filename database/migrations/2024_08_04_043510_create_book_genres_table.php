@@ -16,8 +16,19 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('genre_id');
 
-            $table->foreign('book_id')->references('id')->on('books');
-            $table->foreign('genre_id')->references('id')->on('genres');
+            // Define foreign key constraints with cascading deletes
+            $table->foreign('book_id')
+                ->references('id')
+                ->on('books')
+                ->onDelete('cascade')  // Cascade delete
+                ->onUpdate('cascade'); // Cascade update
+
+            $table->foreign('genre_id')
+                ->references('id')
+                ->on('genres')
+                ->onDelete('cascade')  // Cascade delete
+                ->onUpdate('cascade'); // Cascade update
+
             $table->primary(['book_id', 'genre_id']);
             $table->timestamps();
         });

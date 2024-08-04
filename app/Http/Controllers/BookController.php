@@ -17,7 +17,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('author', 'publication', 'categories', 'genres')->get(); // Retrieve all books with relationships
+        $books = Book::with('author', 'publication', 'category', 'genres')->get(); // Retrieve all books with relationships
 
         // dd($books);
 
@@ -49,6 +49,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->all());
         // Validate the request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255|unique:books|regex:/^[a-zA-Z\s]+$/',
@@ -58,7 +60,7 @@ class BookController extends Controller
             'publication_id' => 'required|exists:publications,id',
             'published_date' => 'nullable|date',
             'price' => 'required|numeric|min:0',
-            'category' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
             'genres' => 'nullable|array',
             'genres.*' => 'exists:genres,id',
         ]);
@@ -86,7 +88,7 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        $book = Book::with('author', 'publication', 'categories', 'genres')->findOrFail($id); // Retrieve the book by ID
+        $book = Book::with('author', 'publication', 'category', 'genres')->findOrFail($id); // Retrieve the book by ID
 
         return view('books.show', compact('book'));
     }

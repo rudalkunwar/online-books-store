@@ -13,6 +13,14 @@ class IndexController extends Controller
         $books = Book::latest()->take(4)->get();
         $categories = Category::all();
         // $books = array_slice((array)$allBooks, 0, 5);
-        return view('main', compact('books', 'categories'));
+        return view('user.home', compact('books', 'categories'));
+    }
+    public function about(Request $request)
+    {
+        return view('user.about');
+    }
+    public function contact(Request $request)
+    {
+        return view('user.contact');
     }
 }

@@ -19,7 +19,6 @@
                         <th class="py-2 px-4 border-b">Author</th>
                         <th class="py-2 px-4 border-b">Publication</th>
                         <th class="py-2 px-4 border-b">Price</th>
-                        <th class="py-2 px-4 border-b">Photo</th>
                         <th class="py-2 px-4 border-b">Actions</th>
                         <th  class="py-2 px-4 border-b">More</th>
                     </tr>
@@ -32,16 +31,9 @@
                         <tr>
                             <td class="py-2 px-4 border-b">{{ $i++ }}</td>
                             <td class="py-2 px-4 border-b">{{ $book->title }}</td>
-                            <td class="py-2 px-4 border-b">{{ $book->author->name }}</td>
-                            <td class="py-2 px-4 border-b">{{ $book->publication->name }}</td>
+                            <td class="py-2 px-4 border-b">{{ $book->author?->name }}</td>
+                            <td class="py-2 px-4 border-b">{{ $book->publication?->name }}</td>
                             <td class="py-2 px-4 border-b">Rs {{ $book->price }}</td>
-                            <td class="py-2 px-4 border-b">
-                                @if ($book->photo)
-                                    <img src="{{ Storage::url($book->photo) }}" alt="{{ $book->title }}" class="w-16 h-16 object-cover">
-                                @else
-                                    No Photo
-                                @endif
-                            </td>
                             <td class="py-2 px-4 border-b">
                                 <a href="{{ route('books.edit', $book->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow hover:bg-blue-700 transition-colors duration-300">Edit</a>
                                 <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">

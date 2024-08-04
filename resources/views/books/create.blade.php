@@ -72,37 +72,15 @@
                     @enderror
                 </div>
 
-                <!-- Published Date Field -->
-                <div class="mb-4">
-                    <label for="published_date" class="block text-gray-700 text-sm font-medium mb-2">Published Date</label>
-                    <input type="date" id="published_date" name="published_date"
-                        class="w-full px-4 py-2 border @error('published_date') border-red-500  @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                        value="{{ old('published_date') }}">
-                    @error('published_date')
-                        <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <!-- Price Field -->
-                <div class="mb-4">
-                    <label for="price" class="block text-gray-700 text-sm font-medium mb-2">Price</label>
-                    <input type="number" step="0.01" id="price" name="price"
-                        class="w-full px-4 py-2 border @error('price') border-red-500  @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                        value="{{ old('price') }}" required>
-                    @error('price')
-                        <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
-                    @enderror
-                </div>
-
                 <!-- Category Field -->
                 <div class="mb-4">
-                    <label for="categories" class="block text-gray-700 text-sm font-medium mb-2">Category</label>
-                    <select id="categories" name="categories"
-                        class="w-full px-4 py-2 border @error('categories') border-red-500  @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <option value="" disabled selected>Select Publication</option>
+                    <label for="category_id" class="block text-gray-700 text-sm font-medium mb-2">Category</label>
+                    <select id="category_id" name="category_id"
+                        class="w-full px-4 py-2 border @error('category_id') border-red-500  @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="" disabled selected>Select Category</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"
-                                {{ old('categories') == $category->id ? 'selected' : '' }}>
+                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                 {{ $category->name }}
                             </option>
                         @endforeach
@@ -136,6 +114,16 @@
                     @enderror
                 </div>
 
+                <!-- Published Date Field -->
+                <div class="mb-4">
+                    <label for="published_date" class="block text-gray-700 text-sm font-medium mb-2">Published Date</label>
+                    <input type="date" id="published_date" name="published_date"
+                        class="w-full px-4 py-2 border @error('published_date') border-red-500  @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                        value="{{ old('published_date') }}">
+                    @error('published_date')
+                        <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 <!-- Photo Field -->
                 <div class="mb-4">
@@ -143,6 +131,18 @@
                     <input type="file" id="photo" name="photo"
                         class="w-full px-4 py-2 border @error('photo') border-red-500  @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                     @error('photo')
+                        <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+                <!-- Price Field -->
+                <div class="mb-4">
+                    <label for="price" class="block text-gray-700 text-sm font-medium mb-2">Price</label>
+                    <input type="number" step="0.01" id="price" name="price"
+                        class="w-full px-4 py-2 border @error('price') border-red-500  @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                        value="{{ old('price') }}" required>
+                    @error('price')
                         <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>

@@ -15,6 +15,7 @@ class Book extends Model
         'description',
         'author_id',
         'publication_id',
+        'category_id',
         'photo',
         'price',
         'published_date'
@@ -32,7 +33,7 @@ class Book extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function categories()
+    public function genres()
     {
         return $this->belongsToMany(Genre::class, 'book_genres')->withTimestamps();
     }

@@ -18,17 +18,20 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->foreignId('author_id')
                 ->constrained('authors')
-                ->onDelete('cascade')
+                ->onDelete('set null')  // Set to NULL on delete
+                ->onUpdate('cascade')   // Cascade on update
                 ->index()
                 ->name('books_author_id_foreign');
             $table->foreignId('publication_id')
                 ->constrained('publications')
-                ->onDelete('cascade')
+                ->onDelete('set null')  // Set to NULL on delete
+                ->onUpdate('cascade')   // Cascade on update
                 ->index()
                 ->name('books_publication_id_foreign');
             $table->foreignId('category_id')
                 ->constrained('categories')
-                ->onDelete('cascade')
+                ->onDelete('set null')  // Set to NULL on delete
+                ->onUpdate('cascade')   // Cascade on update
                 ->index()
                 ->name('books_category_id_foreign');
             $table->date('published_date')->nullable();

@@ -7,9 +7,19 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/about', [IndexController::class, 'about'])->name('about');
+Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
+
+Route::get('/user/register', [UserController::class, 'showReister'])->name('showRegister');
+Route::get('/user/login', [UserController::class, 'showLogin'])->name('showLogin');
+Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
