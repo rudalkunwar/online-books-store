@@ -6,7 +6,7 @@
             <div class="">
                 <h2 class="text-2xl uppercase font-medium mb-1">Login</h2>
             </div>
-            <form action="{{ route('user.login') }}" method="post" autocomplete="off" class="w-full">
+            <form method="POST" action="{{ route('login') }}" class="w-full">
                 @csrf
                 <div class="space-y-4">
                     <div>
@@ -14,6 +14,11 @@
                         <input type="email" name="email" id="email" required
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400"
                             placeholder="youremail@domain.com">
+                            @error('email')
+
+                            <span class="text-red-500">{{$messae}}</span>
+                                
+                            @enderror
                     </div>
                     <div>
                         <label for="password" class="text-gray-600 mb-2 block">Password</label>
