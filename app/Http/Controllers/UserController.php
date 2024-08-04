@@ -27,13 +27,11 @@ class UserController extends Controller
             'confirm-password' => 'required|same:password',
         ]);
 
-        $user = new User([
+        $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
         ]);
-
-        $user->save();
 
         return view('user.home', compact('user'));
     }

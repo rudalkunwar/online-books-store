@@ -36,6 +36,7 @@ return new class extends Migration
                 ->name('books_category_id_foreign');
             $table->date('published_date')->nullable();
             $table->decimal('price', 8, 2);
+            $table->decimal('stock', 5, 2);
             $table->timestamps();
         });
     }

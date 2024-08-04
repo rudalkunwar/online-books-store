@@ -34,6 +34,10 @@
                     <span><strong>Price:</strong> Rs{{ $book->price }}</span>
                 </li>
                 <li class="flex items-center mb-2">
+                    <i class="ri-money-dollar-box-line text-lg text-gray-500 mr-2"></i>
+                    <span><strong>Stock:</strong> Rs{{ $book->stock }}</span>
+                </li>
+                <li class="flex items-center mb-2">
                     <i class="ri-bar-chart-horizontal-line text-lg text-gray-500 mr-2"></i>
                     <span><strong>Category:</strong> {{ $book->category?->name }}</span>
                 </li>

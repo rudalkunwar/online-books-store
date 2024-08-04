@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
@@ -14,19 +15,13 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/about', [IndexController::class, 'about'])->name('about');
 Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 
-Route::get('/register', [UserController::class, 'showReister'])->name('showRegister');
-Route::get('/login', [UserController::class, 'showLogin'])->name('showLogin');
-Route::post('/register', [UserController::class, 'register'])->name('register');
-Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::get('/user/register', [UserController::class, 'showReister'])->name('showRegister');
+Route::get('/user/login', [UserController::class, 'showLogin'])->name('showLogin');
+Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
 
 //for admins 
 Route::middleware(['admin', 'auth'])->group(function () {
-
-    //for dashboard 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
-
     //for books 
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
@@ -68,12 +63,18 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('/publications/{id}/edit', [PublicationController::class, 'edit'])->name('publications.edit');
     Route::put('/publications/{id}/update', [PublicationController::class, 'update'])->name('publications.update');
     Route::delete('/publications/{id}/delete', [PublicationController::class, 'destroy'])->name('publications.destroy');
+
+
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile.index');
+    Route::get('/proflie/edit', [AdminController::class, 'edit'])->name('profile.edit');
+    Route::put('/proflie/update', [AdminController::class, 'update'])->name('profile.update');
+    Route::get('/proflie/settings', [AdminController::class, 'edit_password'])->name('profile.edit_password');
+    Route::put('/password/update', [AdminController::class, 'update_password'])->name('profile.update_password');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-// require __DIR__ . '/auth.php';
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+require __DIR__ . '/auth.php';

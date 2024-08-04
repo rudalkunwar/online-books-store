@@ -18,6 +18,7 @@ class Book extends Model
         'category_id',
         'photo',
         'price',
+        'stock',
         'published_date'
     ];
 

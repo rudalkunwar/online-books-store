@@ -65,6 +65,15 @@
                     @enderror
                 </div>
 
+                  <!-- Stock Field -->
+                  <div class="mb-4">
+                    <label for="stock" class="block text-gray-700 text-sm font-medium mb-2">Stock</label>
+                    <input type="number" step="0.01" id="stock" name="stock" class="w-full px-4 py-2 border @error('stock') border-red-500 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" value="{{ old('stock', $book->stock) }}" required>
+                    @error('stock')
+                        <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <!-- Price Field -->
                 <div class="mb-4">
                     <label for="price" class="block text-gray-700 text-sm font-medium mb-2">Price</label>
