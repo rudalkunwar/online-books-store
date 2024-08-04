@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,10 +15,11 @@ class UserController extends Controller
     {
         return view('user.auth.login');
     }
-    public function login()
+    public function login(Request $request)
     {
     }
-    public function register()
+    public function register(Request $request)
     {
+        (new RegisteredUserController)->store($request);
     }
 }

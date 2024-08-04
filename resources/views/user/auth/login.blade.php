@@ -6,17 +6,18 @@
             <div class="">
                 <h2 class="text-2xl uppercase font-medium mb-1">Login</h2>
             </div>
-            <form action="#" method="post" autocomplete="off" class="w-full">
+            <form action="{{ route('user.login') }}" method="post" autocomplete="off" class="w-full">
+                @csrf
                 <div class="space-y-4">
                     <div>
                         <label for="email" class="text-gray-600 mb-2 block">Email address</label>
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" required
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400"
                             placeholder="youremail@domain.com">
                     </div>
                     <div>
                         <label for="password" class="text-gray-600 mb-2 block">Password</label>
-                        <input type="password" name="password" id="password"
+                        <input type="password" name="password" id="password" required
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400"
                             placeholder="*******">
                     </div>
