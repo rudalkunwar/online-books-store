@@ -70,6 +70,8 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::put('/proflie/update', [AdminController::class, 'update'])->name('profile.update');
     Route::get('/proflie/settings', [AdminController::class, 'edit_password'])->name('profile.edit_password');
     Route::put('/password/update', [AdminController::class, 'update_password'])->name('profile.update_password');
+    Route::get('/users', [AdminController::class, 'allUsers'])->name('profile.users');
+    Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('profile.delete_user');
 });
 
 

@@ -9,6 +9,23 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+
+
+    public function allUsers()
+    {
+        $users = User::where('role', '!=', 'admin')->get();
+        return view('profile.users', compact('users'));
+    }
+
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+
     public function profile(Request $request)
     {
 

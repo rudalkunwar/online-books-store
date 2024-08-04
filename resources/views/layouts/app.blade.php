@@ -108,7 +108,7 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                 </svg>
                             </span>
                             <span class="ml-2 text-sm tracking-wide truncate">Categories</span>
@@ -154,7 +154,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="{{ route('profile.users') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -165,8 +165,6 @@
                                 </svg>
                             </span>
                             <span class="ml-2 text-sm tracking-wide truncate">Users</span>
-                            <span
-                                class="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-500 bg-green-50 rounded-full">15</span>
                         </a>
                     </li>
                     <li class="px-5">
@@ -175,7 +173,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="{{route('profile.index')}}"
+                        <a href="{{ route('profile.index') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -188,7 +186,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('profile.edit_password')}}"
+                        <a href="{{ route('profile.edit_password') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
