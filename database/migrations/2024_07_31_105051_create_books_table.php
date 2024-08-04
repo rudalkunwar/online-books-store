@@ -13,11 +13,24 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->index();
             $table->text('description');
             $table->string('photo')->nullable();
-            $table->foreignId('author_id')->constrained()->onDelete('cascade');
-            $table->foreignId('publication_id')->constrained()->onDelete('cascade');
+            $table->foreignId('author_id')
+                ->constrained('authors')
+                ->onDelete('cascade')
+                ->index()
+                ->name('books_author_id_foreign');
+            $table->foreignId('publication_id')
+                ->constrained('publications')
+                ->onDelete('cascade')
+                ->index()
+                ->name('books_publication_id_foreign');
+            $table->foreignId('category_id')
+                ->constrained('categories')
+                ->onDelete('cascade')
+                ->index()
+                ->name('books_category_id_foreign');
             $table->date('published_date')->nullable();
             $table->decimal('price', 8, 2);
             $table->timestamps();

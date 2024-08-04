@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Category;
 use App\Models\Publication;
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('author', 'publication', 'categories')->get(); // Retrieve all books with relationships
+        $books = Book::with('author', 'publication', 'categories', 'genres')->get(); // Retrieve all books with relationships
 
         // dd($books);
 
@@ -32,11 +33,13 @@ class BookController extends Controller
         $authors = Author::all();          // Fetch all authors
         $publications = Publication::all(); // Fetch all publications
         $categories = Category::all();     // Fetch all categories
+        $genres = Genre::all();     // Fetch all genres
 
         // Return the view with the data
         return view('books.create', [
             'authors' => $authors,
             'publications' => $publications,
+            'genres' => $genres,
             'categories' => $categories,
         ]);
     }
@@ -55,8 +58,9 @@ class BookController extends Controller
             'publication_id' => 'required|exists:publications,id',
             'published_date' => 'nullable|date',
             'price' => 'required|numeric|min:0',
-            'categories' => 'nullable|array',
-            'categories.*' => 'exists:categories,id',
+            'category' => 'required|exists:categories,id',
+            'genres' => 'nullable|array',
+            'genres.*' => 'exists:genres,id',
         ]);
 
 
@@ -69,8 +73,8 @@ class BookController extends Controller
         $book = Book::create($validatedData);
 
         // Attach categories to the book
-        if ($request->has('categories')) {
-            $book->categories()->attach($request->input('categories'));
+        if ($request->has('genres')) {
+            $book->genres()->attach($request->input('genres'));
         }
 
         // Redirect to the index page with a success message
@@ -82,7 +86,7 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        $book = Book::with('author', 'publication', 'categories')->findOrFail($id); // Retrieve the book by ID
+        $book = Book::with('author', 'publication', 'categories', 'genres')->findOrFail($id); // Retrieve the book by ID
 
         return view('books.show', compact('book'));
     }
@@ -96,12 +100,15 @@ class BookController extends Controller
         $authors = Author::all();     // Fetch all authors
         $publications = Publication::all(); // Fetch all publications
         $categories = Category::all();     // Fetch all categories
+        $genres = Genre::all();     // Fetch all genres
+
 
         return view('books.edit', [
             'book' => $book,
             'authors' => $authors,
             'publications' => $publications,
             'categories' => $categories,
+            'genres' => $genres
         ]);
     }
 
@@ -118,8 +125,9 @@ class BookController extends Controller
             'publication_id' => 'required|exists:publications,id',
             'published_date' => 'nullable|date',
             'price' => 'required|numeric|min:0',
-            'categories' => 'nullable|array',
-            'categories.*' => 'exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
+            'genres' => 'nullable|array',
+            'genres.*' => 'exists:genres,id',
         ]);
 
         $book = Book::findOrFail($id);
@@ -133,7 +141,7 @@ class BookController extends Controller
         $book->update($validatedData);
 
         // Sync categories
-        $book->categories()->sync($request->input('categories', []));
+        $book->genres()->sync($request->input('genres', []));
 
         return redirect()->route('books.index')->with('success', 'Book updated successfully.');
     }
@@ -150,7 +158,8 @@ class BookController extends Controller
         }
 
         // Detach categories and delete the book
-        $book->categories()->detach();
+        $book->genres()->detach();
+
         $book->delete();
 
         // Redirect to the index page with a success message

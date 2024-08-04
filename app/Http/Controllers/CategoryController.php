@@ -39,6 +39,7 @@ class CategoryController extends Controller
                 'unique:categories', // Ensure the name is unique in the 'categories' table
                 'regex:/^[a-zA-Z\s]+$/', // Ensure the name does not contain numbers
             ],
+            'priority'=>'numeric',
             'description' => 'nullable|string',
         ]);
 
@@ -85,6 +86,7 @@ class CategoryController extends Controller
                 'unique:categories,name,' . $id, // Exclude the current record from uniqueness check
                 'regex:/^[a-zA-Z\s]+$/', // Ensure the name does not contain numbers
             ],
+            'priority'=>'numeric',
             'description' => 'nullable|string',
         ]);
 

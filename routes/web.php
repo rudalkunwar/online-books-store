@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicationController;
@@ -32,6 +33,14 @@ Route::post('/categories/store', [CategoryController::class, 'store'])->name('ca
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+//for genres 
+Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
+Route::get('/genres/create', [GenreController::class, 'create'])->name('genres.create');
+Route::post('/genres/store', [GenreController::class, 'store'])->name('genres.store');
+Route::get('/genres/{id}/edit', [GenreController::class, 'edit'])->name('genres.edit');
+Route::put('/genres/{id}/update', [GenreController::class, 'update'])->name('genres.update');
+Route::delete('/genres/{id}/delete', [GenreController::class, 'destroy'])->name('genres.destroy');
 
 //for authors 
 Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
