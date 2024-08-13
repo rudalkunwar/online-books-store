@@ -7,6 +7,7 @@ import Mist from "../../assets/images/mist.png";
 import Rain from "../../assets/images/rain.png";
 import WindImg from "../../assets/images/wind.png";
 import { FaSpinner } from "react-icons/fa"; // Importing spinner icon
+import { Link } from "react-router-dom";
 
 const Weather = ({ SearchCity, cityName, temperature, wind, humidity, weatherDetails, loading }) => {
 
@@ -82,7 +83,7 @@ const Weather = ({ SearchCity, cityName, temperature, wind, humidity, weatherDet
         </div>
       </div>
       <div className="font-mono flex justify-center items-center mt-2">
-        <h2> www.rudalkunwar.com.np</h2>
+        <Link to="https://www.rudalkunwar.com.np" target="_blank">  www.rudalkunwar.com.np</Link>
       </div>
     </div>
   );
