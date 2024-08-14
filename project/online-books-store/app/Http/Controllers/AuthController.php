@@ -36,9 +36,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user = Auth::login($user);
+        Auth::login($user);
 
-        return redirect()->route('index')->with('status', 'Registration successful! Welcome!', compact('user'));
+        return redirect()->route('home')->with('status', 'Registration successful! Welcome!');
     }
 
     /**
@@ -69,7 +69,7 @@ class AuthController extends Controller
                 return redirect()->intended(route('dashboard'))->with('status', 'Login successful!');
             }
 
-            return redirect()->intended(route('index'))->with('status', 'Login successful!', compact('user'));
+            return redirect()->intended(route('home'))->with('status', 'Login successful!');
         }
 
         return back()->withErrors([

@@ -14,7 +14,7 @@
 <body>
     <header class="py-4 shadow-sm bg-gray-400 sticky top-0 z-20">
         <div class="container flex items-center justify-between mx-auto px-4">
-            <a href="{{ route('index') }}">
+            <a href="{{ route('home') }}">
                 <h2>Rose Books Shop</h2>
             </a>
             <div class="w-full max-w-xl relative flex">
@@ -69,7 +69,7 @@
         </button>
         <ul class="flex flex-col justify-center items-center h-full">
             <li class="py-3 border-b">
-                <a href="{{ route('index') }}" class="text-gray-500 hover:text-blue-500 font-semibold text-sm">Home</a>
+                <a href="{{ route('home') }}" class="text-gray-500 hover:text-blue-500 font-semibold text-sm">Home</a>
             </li>
             <li class="py-3 border-b">
                 <a href="#about" class="text-gray-500 hover:text-blue-500 font-semibold text-sm">Wishlist</a>
@@ -123,7 +123,7 @@
             </div>
             <!-- Desktop menu -->
             <div class="hidden md:flex items-center space-x-6 capitalize">
-                <a href="{{ route('index') }}" class="text-gray-200 hover:text-white transition flex items-center">
+                <a href="{{ route('home') }}" class="text-gray-200 hover:text-white transition flex items-center">
                     <i class="ri-home-line text-gray-200 mr-2"></i>
                     Home
                 </a>
@@ -141,7 +141,16 @@
                 </a>
             </div>
 
-            @if (!$user)
+            @auth
+                <div class="flex text-white">
+                    <p class="px-4">Welcome {{ auth()->user()->name }}</p>
+                    <span>|</span>
+                    <form action="{{ route('logout') }}" method="post" class="px-2">
+                        @csrf
+                        <button type="submit">Logout <i class="ri-logout-box-line w-5 h-5 text-red-400 px-1"></i></button>
+                    </form>
+                </div>
+            @else
                 <div class="flex items-center space-x-4">
                     <a href="{{ route('register') }}"
                         class="text-gray-200 hover:text-white transition text-base flex items-center">
@@ -155,6 +164,6 @@
                         <span class="hidden md:flex">Login</span>
                     </a>
                 </div>
-            @endif
+            @endauth
         </div>
     </nav>
