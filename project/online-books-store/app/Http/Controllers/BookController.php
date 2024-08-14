@@ -17,11 +17,15 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('author', 'publication', 'category', 'genres')->get(); // Retrieve all books with relationships
+        // Retrieve all books with relationships
+        $allBooks = Book::with('author', 'publication', 'category', 'genres')->get();
 
-        // dd($books);
+        // Instantiate BubbleShortAlgorithm and sort books by price
+        $bubbleSort = new BubbleShortAlgorithm();
+        $sortedBooks = $bubbleSort->sortDescending($allBooks, 'price');
 
-        return view('books.index', compact('books'));
+        // Pass sorted books to the view
+        return view('books.index', ['books' => $sortedBooks]);
     }
 
     /**
