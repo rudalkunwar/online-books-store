@@ -169,7 +169,6 @@
     @php
         session_start();
     @endphp
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sessionMessage = '<?php echo session('success') ? session('success') : ''; ?>';
@@ -187,5 +186,4 @@
         });
     </script>
 </body>
-
 </html>

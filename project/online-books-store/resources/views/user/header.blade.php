@@ -143,6 +143,11 @@
 
             @auth
                 <div class="flex text-white">
+                    <p class="px-4">
+                        @if (auth()->user()->role === 'admin')
+                            <p>Viewing as admin</p>
+                        @endif
+                    </p>
                     <p class="px-4">Welcome {{ auth()->user()->name }}</p>
                     <span>|</span>
                     <form action="{{ route('logout') }}" method="post" class="px-2">

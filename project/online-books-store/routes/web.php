@@ -78,6 +78,6 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
 // require __DIR__ . '/auth.php';
