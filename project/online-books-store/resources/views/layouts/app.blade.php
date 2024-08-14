@@ -143,13 +143,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('logout') }}"
-                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
-                            <span class="inline-flex justify-center items-center ml-4 text-red-400">
-                                <i class="ri-logout-box-line w-5 h-5"></i>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
-                        </a>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button type="submit"
+                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                                <span class="inline-flex justify-center items-center ml-4 text-red-400">
+                                    <i class="ri-logout-box-line w-5 h-5"></i>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>

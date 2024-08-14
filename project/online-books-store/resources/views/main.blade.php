@@ -139,12 +139,12 @@
             </div>
             <!-- Login and Register buttons -->
             <div class="flex items-center space-x-4">
-                <a href="pages/login.html"
+                <a href="{{route('login')}}"
                     class="text-gray-200 hover:text-white transition text-base flex items-center">
                     <i class="ri-login-box-line text-gray-200 mr-2"></i>
                     <span class="hidden md:flex">Login</span>
                 </a>
-                <a href="pages/register.html"
+                <a href="{{route('register')}}"
                     class="text-gray-200 hover:text-white transition text-base flex items-center">
                     <i class="ri-user-add-line text-gray-200 mr-2"></i>
                     <span class="hidden md:flex">Register</span>

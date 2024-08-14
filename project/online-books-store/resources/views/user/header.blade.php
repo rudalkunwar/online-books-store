@@ -8,9 +8,7 @@
     <title>Rose Books Store</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-    <script>
-       
-    </script>
+    <script></script>
 </head>
 
 <body>
@@ -80,10 +78,11 @@
                 <a href="#about" class="text-gray-500 hover:text-blue-500 font-semibold text-sm">Cart</a>
             </li>
             <li class="py-3 border-b">
-                <a href="{{route('about')}}" class="text-gray-500 hover:text-blue-500 font-semibold text-sm">About</a>
+                <a href="{{ route('about') }}" class="text-gray-500 hover:text-blue-500 font-semibold text-sm">About</a>
             </li>
             <li class="py-3 border-b">
-                <a href="{{route('contact')}}" class="text-gray-500 hover:text-blue-500 font-semibold text-sm">Contact</a>
+                <a href="{{ route('contact') }}"
+                    class="text-gray-500 hover:text-blue-500 font-semibold text-sm">Contact</a>
             </li>
             <li class="py-3 border-b mx-10">
                 <div class="w-full max-w-1/2 relative flex">
@@ -141,18 +140,21 @@
                     Contact Us
                 </a>
             </div>
-            <!-- Login and Register buttons -->
-            <div class="flex items-center space-x-4">
-                <a href="{{route('showRegister')}}" class="text-gray-200 hover:text-white transition text-base flex items-center">
-                    <i class="ri-user-add-line text-gray-200 mr-2"></i>
-                    <span class="hidden md:flex">Register</span>
-                </a>
-               <span class="text-white px-1">|</span>
-                <a href="{{route('showLogin')}}" class="text-gray-200 hover:text-white transition text-base flex items-center">
-                    <i class="ri-login-box-line text-gray-200 mr-2"></i>
-                    <span class="hidden md:flex">Login</span>
-                </a>
-            </div>
+
+            @if (!$user)
+                <div class="flex items-center space-x-4">
+                    <a href="{{ route('register') }}"
+                        class="text-gray-200 hover:text-white transition text-base flex items-center">
+                        <i class="ri-user-add-line text-gray-200 mr-2"></i>
+                        <span class="hidden md:flex">Register</span>
+                    </a>
+                    <span class="text-white px-1">|</span>
+                    <a href="{{ route('login') }}"
+                        class="text-gray-200 hover:text-white transition text-base flex items-center">
+                        <i class="ri-login-box-line text-gray-200 mr-2"></i>
+                        <span class="hidden md:flex">Login</span>
+                    </a>
+                </div>
+            @endif
         </div>
     </nav>
-    <!-- ./navbar -->

@@ -1,24 +1,24 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicationController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/about', [IndexController::class, 'about'])->name('about');
 Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 
-Route::get('/user/register', [UserController::class, 'showReister'])->name('showRegister');
-Route::get('/user/login', [UserController::class, 'showLogin'])->name('showLogin');
-Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
-Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
+Route::get('register', [AuthController::class, 'registerPage'])->name('register');
+Route::post('register', [AuthController::class, 'register'])->name('user.register');
+Route::get('login', [AuthController::class, 'loginPage'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 //for admins 
 Route::middleware(['admin', 'auth'])->group(function () {
@@ -79,4 +79,5 @@ Route::middleware(['admin', 'auth'])->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-require __DIR__ . '/auth.php';
+
+// require __DIR__ . '/auth.php';

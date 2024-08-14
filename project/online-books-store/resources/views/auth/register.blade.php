@@ -1,52 +1,68 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+@include('user.header')
+<!-- login -->
+<div class="contain py-16">
+    <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden bg-white">
+        <div class="text-center">
+            <h2 class="text-2xl uppercase font-medium mb-1">Create an account</h2>
+            <p class="text-gray-600 mb-6 text-sm">Register as a new customer</p>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <form aaction="{{ route('register') }}" method="POST" >
+            @csrf
+            <div class="space-y-4">
+                <div>
+                    <label for="name" class="text-gray-600 mb-2 block">Full Name</label>
+                    <input type="text" name="name" id="name" required value="{{ old('name') }}"
+                        class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400"
+                        placeholder="John Doe">
+                    @error('name')
+                        <h2 class="text-red-500">{{ $message }}</h2>
+                    @enderror
+                </div>
+                <div>
+                    <label for="email" class="text-gray-600 mb-2 block">Email address</label>
+                    <input type="email" name="email" id="email" required value="{{ old('email') }}"
+                        class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400"
+                        placeholder="youremail@domain.com">
+                    @error('email')
+                        <h2 class="text-red-500">{{ $message }}</h2>
+                    @enderror
+                </div>
+                <div>
+                    <label for="password" class="text-gray-600 mb-2 block">Password</label>
+                    <input type="password" name="password" id="password" required value="{{ old('password') }}"
+                        class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400"
+                        placeholder="*******">
+                    @error('password')
+                        <h2 class="text-red-500">{{ $message }}</h2>
+                    @enderror
+                </div>
+                <div>
+                    <label for="confirm" class="text-gray-600 mb-2 block">Confirm password</label>
+                    <input type="password" name="confirm-password" id="confirm" required value="{{ old('confirm') }}"
+                        class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400"
+                        placeholder="*******">
+                    @error('confirm-password')
+                        <h2 class="text-red-500">{{ $message }}</h2>
+                    @enderror
+                </div>
+            </div>
+            <div class="mt-6">
+                <div class="flex items-center">
+                    <input type="checkbox" name="agreement" id="agreement" required
+                        class="text-gray-600 focus:ring-0 rounded-sm cursor-pointer">
+                    <label for="agreement" class="text-gray-600 ml-3 cursor-pointer">I have read and agree to the terms
+                        & conditions</label>
+                </div>
+            </div>
+            <div class="mt-6">
+                <button type="submit"
+                    class="block w-full py-2 text-center text-white bg-gray-800 border border-gray-800 rounded hover:bg-transparent hover:text-gray-800 transition uppercase font-medium">Create
+                    Account</button>
+            </div>
+        </form>
+        <p class="mt-4 text-center text-gray-600">Already have an account? <a href="{{ route('login') }}"
+                class="text-gray-800 hover:underline">Login now</a></p>
+    </div>
+</div>
+<!-- ./login -->
+@include('user.footer')
