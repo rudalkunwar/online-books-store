@@ -34,12 +34,3 @@ The **Online Bookstore Application** is a full-stack web application built using
 - **Payment Gateway**: eSewa 
 
 ---
-
-## 🚀 Installation
-
-### Prerequisites
-- PHP 8.2 or higher
-- Composer
-- MySQL or SQLite database
-- Node.js (for compiling assets)
-- A web server (e.g., Apache or Nginx)
