@@ -22,7 +22,6 @@ The **Online Bookstore Application** is a full-stack web application built using
 - **Ratings and Reviews**: Submit and view ratings for books to guide other readers.
 - **Payment Integration**: Secure payment gateway integration for purchasing books.
 - **Content Management**: Admin panel to manage users, books, orders, and feedback.
-- **Video Playback**: Preview book trailers with a video player.
 - **Responsive Design**: Mobile-friendly, responsive layout for seamless user experience.
 
 ---
@@ -31,9 +30,8 @@ The **Online Bookstore Application** is a full-stack web application built using
 
 - **Frontend**: Blade templates, Tailwind CSS
 - **Backend**: Laravel 10 (PHP 8.2)
-- **Database**: MySQL or SQLite (based on deployment environment)
-- **Payment Gateway**: eSewa (or similar)
-- **APIs**: Custom-built for handling book data, search, and payment processing
+- **Database**: MySQL 
+- **Payment Gateway**: eSewa 
 
 ---
 
@@ -45,9 +43,3 @@ The **Online Bookstore Application** is a full-stack web application built using
 - MySQL or SQLite database
 - Node.js (for compiling assets)
 - A web server (e.g., Apache or Nginx)
-
-### Steps
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/online-bookstore.git
-   cd online-bookstore
